@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Information on Heart Health and PM2.5</title>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+body {
+  font-family: 'Arimo', sans-serif;
+  background-color: #121212; /* Dark background */
+  color: #E0E0E0; /* Light grey text */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  background-color: #1F1F1F; /* Dark grey */
+  color: #BB86FC; /* Light purple */
+  padding: 1em 0;
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Pacifico', cursive;
+}
+
+nav {
+  margin: 1em;
+}
+
+nav a {
+  color: #BB86FC; /* Light purple */
+  margin: 0 1em;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.container {
+  width: 80%;
+  margin: 2em auto;
+  background-color: #1E1E1E; /* Slightly lighter dark */
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+h2, h3 {
+  color: #BB86FC; /* Light purple */
+  text-align: center;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.6em;
+  margin: 1em 0;
+}
+
+img {
+  display: block;
+  margin: 2em auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+img[src="https://thumbs.dreamstime.com/z/pm-infographic-information-dust-pm-source-air-pollution-pm-infographic-information-dust-pm-source-air-pollution-vector-137656323.jpg"] {
+}
+</style>
+</head>
+<body>
+
+<header>
+  Heart Health and PM2.5 Information
+</header>
+
+<nav>
+  <a href="{{ url_for('information') }}">Information</a>
+  <a href="{{ url_for('home') }}">Predict</a>
+</nav>
+
+<div class="container">
+  <h2>The Importance of Heart Health</h2>
+  <p>Heart health is crucial in maintaining overall well-being. Cardiovascular diseases are a leading cause of mortality globally, making it essential to adopt heart-healthy habits.</p>
+  
+  <h2>The Growing Concern of Heart Diseases</h2>
+  <p>Heart diseases are on the rise due to factors such as poor diet, lack of exercise, and increasing levels of stress. It's important to monitor and manage these risk factors to maintain a healthy heart.</p>
+  
+  <h2>The Impact of PM2.5 on Heart Health</h2>
+  <p>PM2.5, or fine particulate matter, is a significant environmental risk factor for heart disease. These tiny particles can penetrate deep into the lungs and enter the bloodstream, causing inflammation and other cardiovascular issues.</p>
+  
+  <h2>Origins of PM2.5</h2>
+  <p>PM2.5 particles originate from various sources, including vehicle emissions, industrial processes, construction activities, and even natural sources like wildfires and volcanic eruptions.</p>
+  
+  <img src="https://thumbs.dreamstime.com/z/pm-infographic-information-dust-pm-source-air-pollution-pm-infographic-information-dust-pm-source-air-pollution-vector-137656323.jpg" alt="Illustration of PM2.5 Sources">
+
+  <h2>Protecting Your Heart from PM2.5</h2>
+  <p>To protect your heart from the harmful effects of PM2.5, it's important to stay informed about air quality levels and take appropriate actions, such as limiting outdoor activities on high pollution days and using air purifiers indoors.</p>
+</div>
+
+</body>
+</html>

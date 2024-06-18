@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>PM2.5 Prediction</title>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+body {
+  font-family: 'Arimo', sans-serif;
+  background-color: #121212; /* Dark background */
+  color: #E0E0E0; /* Light grey text */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  background-color: #1F1F1F; /* Dark grey */
+  color: #BB86FC; /* Light purple */
+  padding: 1em 0;
+  text-align: center;
+  font-size: 2em;
+  font-family: 'Pacifico', cursive;
+}
+
+nav {
+  margin: 1em;
+}
+
+nav a {
+  color: #BB86FC; /* Light purple */
+  margin: 0 1em;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.container {
+  width: 60%;
+  margin: 2em auto;
+  background-color: #1E1E1E; /* Slightly lighter dark */
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  margin-bottom: 1em;
+  padding: 0.75em;
+  font-size: 1em;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #333; /* Darker input background */
+  color: #E0E0E0;
+}
+
+form button {
+  padding: 1em;
+  background-color: #03DAC6; /* Teal */
+  color: #121212;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #018786;
+}
+
+h2 {
+  text-align: center;
+  color: #BB86FC; /* Light purple */
+}
+
+.prediction, .risk-category, .advice {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #03DAC6; /* Teal */
+  margin-top: 1em;
+}
+
+.advice {
+  font-size: 1.2em;
+  color: #BB86FC; /* Light purple */
+  margin-top: 0.5em;
+  padding: 1em;
+  background-color: #2C2C2C; /* Dark background for advice */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+</style>
+</head>
+<body>
+
+<header>
+  PM2.5 Prediction
+</header>
+
+<nav>
+  <a href="{{ url_for('information') }}">Information</a>
+  <a href="{{ url_for('home') }}">Predict </a>
+</nav>
+
+<div class="container">
+  <form action="{{ url_for('predict') }}" method="post">
+    <input type="text" name="T" placeholder="Average Temperature (°C)" required="required" />
+    <input type="text" name="TM" placeholder="Maximum Temperature (°C)" required="required" />
+    <input type="text" name="Tm" placeholder="Minimum Temperature (°C)" required="required" />
+    <input type="text" name="SLP" placeholder="Atmospheric Pressure (hPa)" required="required" />
+    <input type="text" name="H" placeholder="Relative Humidity (%)" required="required" />
+    <input type="text" name="VV" placeholder="Visibility (Km)" required="required" />
+    <input type="text" name="V" placeholder="Wind Speed (Km/h)" required="required" />
+    <input type="text" name="VM" placeholder="Max Wind Speed (Km/h)" required="required" />
+    
+    <button type="submit">Predict</button>
+  </form>
+
+  {% if pm25 is defined and risk_category is defined and advice is defined %}
+    <div class="prediction">Predicted PM2.5: {{ pm25 }} μg/m³</div>
+    <div class="risk-category">Risk Category: {{ risk_category }}</div>
+    <div class="advice">Advice: {{ advice }}</div>
+  {% endif %}
+</div>
+
+</body>
+</html>
