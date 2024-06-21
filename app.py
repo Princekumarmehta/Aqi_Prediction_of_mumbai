@@ -23,7 +23,7 @@ def create_connection(db_file):
     return conn
 
 
-# Initialize the database and create table if it doesn't exist
+# Initialize the database and create table if it doesn't exist in it
 def init_db():
     conn = create_connection("predictions.db")
     try:
