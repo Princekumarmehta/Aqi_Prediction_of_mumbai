@@ -122,7 +122,7 @@ def get_advice_for_heart_patients(risk_category):
 # Function to fetch current weather data for Mumbai
 def get_current_weather(city="Mumbai"):
     try:
-        api_key = "a6c692f29c3f27afd476bb8f64ce13c5"
+        api_key = "YOUR-API-KEY"
         url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
         response = requests.get(url)
         data = response.json()
