@@ -4,6 +4,7 @@ import pickle
 import logging
 import sqlite3
 from sqlite3 import Error
+import requests
 
 app = Flask(__name__)
 
@@ -118,10 +119,46 @@ def get_advice_for_heart_patients(risk_category):
         return "No advice available."
 
 
+# Function to fetch current weather data for Mumbai
+def get_current_weather(city="Mumbai"):
+    try:
+        api_key = "a6c692f29c3f27afd476bb8f64ce13c5"
+        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+        response = requests.get(url)
+        data = response.json()
+
+        if response.status_code != 200:
+            logging.error(f"Error fetching weather data: {data}")
+            return None
+
+        # Extract relevant weather parameters
+        weather_data = {
+            "T": data["main"]["temp"],
+            "TM": data["main"]["temp_max"],
+            "Tm": data["main"]["temp_min"],
+            "SLP": data["main"]["pressure"],
+            "H": data["main"]["humidity"],
+            "VV": data["visibility"] / 1000,  # Convert meters to kilometers
+            "V": data["wind"]["speed"],
+            "VM": data["wind"].get(
+                "gust", data["wind"]["speed"]
+            ),  # Assuming max wind speed is available
+        }
+        return weather_data
+    except KeyError as e:
+        logging.error(f"Key error when fetching weather data: {e}")
+        return None
+    except Exception as e:
+        logging.error(f"Error fetching weather data: {e}")
+        return None
+
+
 @app.route("/")
 def home():
     try:
-        return render_template("index.html")
+        # Fetch current weather data for Mumbai
+        weather_data = get_current_weather()
+        return render_template("index.html", weather_data=weather_data)
     except Exception as e:
         logging.error("Error rendering home page: %s", e)
         return "An error occurred while loading the home page."
