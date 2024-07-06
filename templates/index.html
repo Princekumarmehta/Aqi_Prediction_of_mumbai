@@ -114,17 +114,16 @@ h2 {
   <a href="{{ url_for('information') }}">Information</a>
   <a href="{{ url_for('home') }}">Predict </a>
 </nav>
-
 <div class="container">
   <form action="{{ url_for('predict') }}" method="post">
-    <input type="text" name="T" placeholder="Average Temperature (°C)" required="required" />
-    <input type="text" name="TM" placeholder="Maximum Temperature (°C)" required="required" />
-    <input type="text" name="Tm" placeholder="Minimum Temperature (°C)" required="required" />
-    <input type="text" name="SLP" placeholder="Atmospheric Pressure (hPa)" required="required" />
-    <input type="text" name="H" placeholder="Relative Humidity (%)" required="required" />
-    <input type="text" name="VV" placeholder="Visibility (Km)" required="required" />
-    <input type="text" name="V" placeholder="Wind Speed (Km/h)" required="required" />
-    <input type="text" name="VM" placeholder="Max Wind Speed (Km/h)" required="required" />
+    <input type="text" name="T" placeholder="Average Temperature (°C)" required="required" value="{{ weather_data.T if weather_data else '' }}" />
+    <input type="text" name="TM" placeholder="Maximum Temperature (°C)" required="required" value="{{ weather_data.TM if weather_data else '' }}" />
+    <input type="text" name="Tm" placeholder="Minimum Temperature (°C)" required="required" value="{{ weather_data.Tm if weather_data else '' }}" />
+    <input type="text" name="SLP" placeholder="Atmospheric Pressure (hPa)" required="required" value="{{ weather_data.SLP if weather_data else '' }}" />
+    <input type="text" name="H" placeholder="Relative Humidity (%)" required="required" value="{{ weather_data.H if weather_data else '' }}" />
+    <input type="text" name="VV" placeholder="Visibility (Km)" required="required" value="{{ weather_data.VV if weather_data else '' }}" />
+    <input type="text" name="V" placeholder="Wind Speed (Km/h)" required="required" value="{{ weather_data.V if weather_data else '' }}" />
+    <input type="text" name="VM" placeholder="Max Wind Speed (Km/h)" required="required" value="{{ weather_data.VM if weather_data else '' }}" />
     
     <button type="submit">Predict</button>
   </form>
